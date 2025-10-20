@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Wizards — Profile Card</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8, #dbeafe);
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    article[data-testid="test-profile-card"] {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+      max-width: 380px;
+      width: 100%;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    article[data-testid="test-profile-card"]:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    figure {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 2px solid #e2e8f0;
+      object-fit: cover;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.2rem;
+    }
+
+    h2[data-testid="test-user-name"] {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 0.3rem;
+    }
+
+    p[data-testid="test-user-bio"] {
+      padding: 0 1.5rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .time {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 1.2rem;
+    }
+
+    nav[data-testid="test-user-social-links"] {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 3px 12px rgba(99, 102, 241, 0.3);
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      transform: translateY(-2px);
+    }
+
+    section {
+      padding: 1.2rem 1.5rem;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: disc inside;
+      color: #475569;
+      font-size: 0.93rem;
+      line-height: 1.5;
+    }
+
+    li + li {
+      margin-top: 0.3rem;
+    }
+
+    @media (min-width: 700px) {
+      article[data-testid="test-profile-card"] {
+        display: flex;
+        max-width: 700px;
+        align-items: center;
+      }
+
+      figure {
+        flex: 1;
+      }
+
+      .info {
+        flex: 2;
+        padding: 1rem;
+      }
+
+      header, p, .time, nav, section {
+        text-align: left;
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <article data-testid="test-profile-card">
+    <figure>
+      <img 
+        src="https://i.pinimg.com/originals/a9/2e/11/a92e11c6e6d0e0545cbd2d75853a5ed3.jpg" 
+        alt="Anime character portrait" 
+        data-testid="test-user-avatar"
+      />
+    </figure>
+    <div class="info">
+      <header>
+        <h2 data-testid="test-user-name">Matthew Otusajo</h2>
+      </header>
+      <p data-testid="test-user-bio">
+        A creative front-end developer who loves clean design, smooth interactions, and a touch of anime inspiration.
+      </p>
+      <p class="time">
+        Current time (ms): <span data-testid="test-user-time" id="time"></span>
+      </p>
+
+      <nav data-testid="test-user-social-links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" data-testid="test-user-social-github">
+          GitHub
+        </a>
+      </nav>
+
+      <section data-testid="test-user-hobbies">
+        <h3>Hobbies</h3>
+        <ul>
+          <li>Designing sleek UIs</li>
+          <li>Learning new web tech</li>
+          <li>Sketching anime art</li>
+        </ul>
+      </section>
+
+      <section data-testid="test-user-dislikes">
+        <h3>Dislikes</h3>
+        <ul>
+          <li>Cluttered layouts</li>
+          <li>Bad color contrast</li>
+          <li>Unresponsive designs</li>
+        </ul>
+      </section>
+    </div>
+  </article>
+
+  <script>
+    const timeEl = document.getElementById("time");
+    function updateTime() {
+      timeEl.textContent = Date.now();
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>
